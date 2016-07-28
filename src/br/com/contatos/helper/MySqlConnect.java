@@ -13,7 +13,7 @@ public class MySqlConnect {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			con = DriverManager.getConnection("jdbc:mysql://10.107.134.60/contatos", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://10.107.144.40/contatos", "root", "root");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
