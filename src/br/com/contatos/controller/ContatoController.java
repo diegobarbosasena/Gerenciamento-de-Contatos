@@ -125,23 +125,22 @@ public class ContatoController implements Initializable{
 		String sql_select_atualizar ="SELECT * FROM contact WHERE id = ?;";
 		PreparedStatement parametros;
 
+		
+		
 		try {
-			ResultSet rs = con.createStatement().executeQuery(sql_select_atualizar);
+			
+			
+			parametros = con.prepareStatement(sql_select_atualizar);
+			parametros.setInt(1, contatos.getId());
+		
+			
+			ResultSet rs = parametros.executeQuery();
 
 
 
 			while (rs.next()) {
 
-				Contatos c = new Contatos();
-
-				parametros = con.prepareStatement(sql_select_atualizar);
-				parametros.setInt(1, contatos.getId());
-				parametros.executeQuery(sql_select_atualizar);
-
-				c.setId(rs.getInt("id"));
-				c.setNome(rs.getString("name"));
-				c.setTelefone(rs.getString("phone"));
-
+			
 				String id = rs.getString("id");
 				String nome = rs.getString("name");
 				String tel = rs.getString("phone");
@@ -149,11 +148,9 @@ public class ContatoController implements Initializable{
 				txtNome.setText(nome);
 				txtTelefone.setText(tel);
 
-
-
-				con.close();
+				
 			}
-
+con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
